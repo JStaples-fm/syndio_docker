@@ -38,4 +38,4 @@ jobs:
 
       - name: Deploy Docker
         run: |-
-          SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} bash docker-deploy.sh
+          SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} SYNDIO_PASSWORD=${SYNDIO_PASSWORD} bash docker-deploy.sh
