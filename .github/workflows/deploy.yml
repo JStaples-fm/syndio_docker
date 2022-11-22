@@ -33,4 +33,4 @@ jobs:
           parse-json: true
 
       - name: Check if env variable is set after fetching secrets
-        run: if [ -z ${syndio/password+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$syndio/password'"; fi
+        run: if [ -z ${SYNDIO+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$SYNDIO'"; fi
