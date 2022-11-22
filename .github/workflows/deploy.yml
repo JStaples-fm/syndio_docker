@@ -29,7 +29,7 @@ jobs:
       - name: Read secrets from AWS Secrets Manager into environment variables
         uses: abhilash1in/aws-secrets-manager-action@v2.1.0
         with:
-          secrets: syndio/*
+          secrets: syndio/password
           parse-json: true
 
       - name: Check if env variable is set after fetching secrets
