@@ -33,5 +33,10 @@ jobs:
           secrets: syndio
           parse-json: true
 
-      - name: Check if env variable is set after fetching secrets
-        run: if [ -z ${SYNDIO_PASSWORD+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$SYNDIO_PASSWORD'"; fi
+      - name: Check Secret Fetch
+        run: if [ -z ${SYNDIO_PASSWORD+x} ]; then echo "secret is unset"; else echo "secret is set to '$SYNDIO_PASSWORD'"; fi
+
+      - name: Deploy Docker
+        run: |-
+          echo '$SYNDIO_PASSWORD'
+          SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} bash docker-deploy.sh
