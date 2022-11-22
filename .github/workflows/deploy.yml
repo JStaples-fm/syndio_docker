@@ -4,6 +4,7 @@ on:
     branches: [development]
   pull_request:
     branches: [development]
+
 jobs:
   docker-deploy:
     runs-on: ubuntu-latest
@@ -33,4 +34,4 @@ jobs:
           parse-json: true
 
       - name: Check if env variable is set after fetching secrets
-        run: if [ -z ${SYNDIO/PASSWORD+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$SYNDIO/PASSWORD'"; fi
+        run: if [ -z ${SYNDIO_PASSWORD+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$SYNDIO_PASSWORD'"; fi
