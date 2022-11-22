@@ -38,5 +38,4 @@ jobs:
 
       - name: Deploy Docker
         run: |-
-          echo '$SYNDIO_PASSWORD'
           SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} bash docker-deploy.sh
