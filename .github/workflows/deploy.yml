@@ -10,6 +10,7 @@ jobs:
     env:
       BUILD_STAGE: ${{ github.event.pull_request.base.ref || github.ref_name }}
       AWS_REGION: eu-west-1
+      SERVICE: syndio-docker
 
     permissions:
       id-token: write
@@ -24,3 +25,14 @@ jobs:
           role-to-assume: arn:aws:iam::651762338902:role/GithubActionsDeployDocker
           role-session-name: GithubActionsDeployDocker
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Read secrets from AWS Secrets Manager into environment variables
+        uses: abhilash1in/aws-secrets-manager-action@v2.1.0
+        with:
+          secrets: syndio/password
+          parse-json: true
+
+      - name: Deploy Docker
+        run: |-
+          echo $SYNDIO_PASSWORD
+          SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} bash docker-deploy.sh
