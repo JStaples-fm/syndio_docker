@@ -29,8 +29,8 @@ jobs:
       - name: Read secrets from AWS Secrets Manager into environment variables
         uses: abhilash1in/aws-secrets-manager-action@v2.1.0
         with:
-          secrets: syndio/password/password
+          secrets: syndio/password
           parse-json: true
 
       - name: Check if env variable is set after fetching secrets
-        run: if [ -z ${test/value+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$test/value'"; fi
+        run: if [ -z ${syndio/password+x} ]; then echo "TEST is unset"; else echo "TEST is set to '$syndio/password'"; fi
