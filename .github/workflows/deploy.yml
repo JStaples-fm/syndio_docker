@@ -10,6 +10,7 @@ jobs:
     env:
       BUILD_STAGE: ${{ github.event.pull_request.base.ref || github.ref_name }}
       AWS_REGION: eu-west-1
+
     permissions:
       id-token: write
       contents: read
