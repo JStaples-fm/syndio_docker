@@ -27,15 +27,6 @@ jobs:
           role-session-name: GithubActionsDeployDocker
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Read secrets from AWS Secrets Manager into environment variables
-        uses: abhilash1in/aws-secrets-manager-action@v2.1.0
-        with:
-          secrets: syndio
-          parse-json: true
-
-      - name: Check Secret Fetch
-        run: if [ -z ${SYNDIO_PASSWORD+x} ]; then echo "secret is unset"; else echo "secret is set to '$SYNDIO_PASSWORD'"; fi
-
       - name: Deploy Docker
         run: |-
-          SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} SYNDIO_PASSWORD=${SYNDIO_PASSWORD} bash docker-deploy.sh
+          SERVICE=${{ env.SERVICE }} BUILD_STAGE=${{ env.BUILD_STAGE }} AWS_REGION=${{ env.AWS_REGION }} bash docker-deploy.sh
