@@ -12,7 +12,6 @@ ENV ENTRY_JAR=elastic_in-0.0.1-SNAPSHOT.jar JAR_MEM=128
 ARG ENTRY_PASSWORD
 #Check variables are correct
 RUN echo "ENTRY_JAR value : ${ENTRY_JAR} + JAR_MEM value : ${JAR_MEM}"
-
 COPY ${ENTRY_JAR} app.jar
 
 #Necessary steps as ENTRYPOINT refuses to resolve variables
